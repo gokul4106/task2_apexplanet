@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gokul — Task 2: Intermediate HTML, CSS &amp; JavaScript</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="task2.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER — Flexbox navbar ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <span class="logo"><i class="fa-solid fa-shield-halved"></i> GOKUL<span class="logo-dot">.</span></span>
+      <nav>
+        <a href="#form">Contact</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#todo">Quest Log</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-intro">
+    <div class="container">
+      <span class="level-chip"><i class="fa-solid fa-star"></i> LEVEL 2 &middot; INTERMEDIATE</span>
+      <h1>Task 2: Intermediate HTML, CSS &amp; JavaScript</h1>
+      <p class="lead">A working contact form, a responsive photo grid, and a dynamic to-do list — built with Flexbox, CSS Grid, and JavaScript form validation.</p>
+    </div>
+  </section>
+
+  <!-- ===== 1. CONTACT FORM (sends a real email via FormSubmit) ===== -->
+  <section id="form" class="section">
+    <div class="container">
+      <h2><i class="fa-solid fa-envelope-open-text"></i> Get in touch</h2>
+      <p class="section-desc">Fill this out and it'll actually land in my inbox — validated with JavaScript before it ever gets sent.</p>
+
+      <div class="contact-layout">
+
+        <!-- LEFT: the form -->
+        <form
+          id="contactForm"
+          class="contact-form"
+          action="https://formsubmit.co/YOUR-EMAIL@example.com"
+          method="POST"
+          novalidate
+        >
+          <!-- FormSubmit configuration fields (hidden, not shown to the user) -->
+          <input type="hidden" name="_subject" value="New message from your portfolio site!" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" />
+            <span class="error-msg" id="nameError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" />
+            <span class="error-msg" id="emailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Say something..."></textarea>
+            <span class="error-msg" id="messageError"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-glow" id="submitBtn">
+            <i class="fa-solid fa-paper-plane"></i> Send message
+          </button>
+
+          <p id="formSuccess" class="form-success"></p>
+        </form>
+
+        <!-- RIGHT: contact info card -->
+        <aside class="contact-info-card">
+          <h3>Let's connect</h3>
+          <p>Open to internship feedback, collaboration, or just talking shop about web dev.</p>
+
+          <ul class="contact-info-list">
+            <li><i class="fa-solid fa-envelope"></i> your-email@example.com</li>
+            <li><i class="fa-solid fa-location-dot"></i> Tamil Nadu, India</li>
+            <li><i class="fa-solid fa-briefcase"></i> Web Development Intern @ ApexPlanet</li>
+          </ul>
+
+          <div class="social-links">
+            <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2. PHOTO GRID GALLERY (CSS Grid + Flexbox demo) ===== -->
+  <section id="gallery" class="section section-alt">
+    <div class="container">
+      <h2><i class="fa-solid fa-images"></i> Photo grid gallery</h2>
+      <p class="section-desc">A responsive CSS Grid layout — reflows from 4 columns down to 1 as the screen shrinks. Resize your browser to see it.</p>
+
+      <div class="photo-grid">
+        <figure class="photo-item">
+          <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=500&auto=format&fit=crop" alt="Laptop showing code" />
+          <figcaption>Writing code</figcaption>
+        </figure>
+        <figure class="photo-item">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=500&auto=format&fit=crop" alt="Code on a monitor" />
+          <figcaption>Debugging</figcaption>
+        </figure>
+        <figure class="photo-item">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=500&auto=format&fit=crop" alt="Team working together" />
+          <figcaption>Collaboration</figcaption>
+        </figure>
+        <figure class="photo-item">
+          <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=500&auto=format&fit=crop" alt="Code editor close up" />
+          <figcaption>Clean code</figcaption>
+        </figure>
+        <figure class="photo-item">
+          <img src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?q=80&w=500&auto=format&fit=crop" alt="Desk setup" />
+          <figcaption>Workspace</figcaption>
+        </figure>
+        <figure class="photo-item">
+          <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=500&auto=format&fit=crop" alt="Planning on a whiteboard" />
+          <figcaption>Planning</figcaption>
+        </figure>
+        <figure class="photo-item">
+          <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=500&auto=format&fit=crop" alt="Working on a project" />
+          <figcaption>Building</figcaption>
+        </figure>
+        <figure class="photo-item">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=500&auto=format&fit=crop" alt="Studying" />
+          <figcaption>Learning</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. DYNAMIC TO-DO LIST (DOM manipulation) ===== -->
+  <section id="todo" class="section">
+    <div class="container">
+      <h2><i class="fa-solid fa-list-check"></i> Quest log (to-do list)</h2>
+      <p class="section-desc">Add and remove tasks dynamically — pure JavaScript DOM manipulation.</p>
+
+      <div class="todo-box">
+        <div class="todo-input-row">
+          <input type="text" id="todoInput" placeholder="Add a new quest..." />
+          <button id="addTodoBtn" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>
+        </div>
+        <ul id="todoList" class="todo-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-note">Built for the ApexPlanet Software Pvt Ltd Internship &mdash; Task 2</p>
+    </div>
+  </footer>
+
+  <script src="task2.js"></script>
+</body>
+</html>

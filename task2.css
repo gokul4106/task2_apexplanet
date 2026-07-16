@@ -1,0 +1,224 @@
+:root {
+  --color-bg: #0F1420;
+  --color-bg-alt: #161C2C;
+  --color-surface: #1B2333;
+  --color-text: #EAEDF3;
+  --color-text-muted: #8E97AB;
+  --color-primary: #4FD1C5;
+  --color-primary-dark: #2CA6A0;
+  --color-accent: #FFC145;
+  --color-danger: #FF6B6B;
+  --color-border: #2A3245;
+
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --radius: 12px;
+  --max-width: 1040px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+}
+
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; }
+h2 { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+h2 i { color: var(--color-accent); }
+a { color: var(--color-primary); text-decoration: none; }
+
+/* ===== HEADER — Flexbox nav, properly aligned ===== */
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  background: rgba(15, 20, 32, 0.9);
+  position: sticky; top: 0; z-index: 10;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   /* logo left, nav right, evenly split */
+  padding: 18px 24px;
+}
+.logo { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
+.logo i { color: var(--color-primary); }
+.logo-dot { color: var(--color-accent); }
+.site-header nav { display: flex; align-items: center; gap: 26px; }
+.site-header nav a { color: var(--color-text-muted); font-weight: 500; font-size: 0.95rem; transition: color 0.2s ease; }
+.site-header nav a:hover { color: var(--color-primary); }
+
+/* ===== PAGE INTRO ===== */
+.page-intro { padding: 56px 0 40px; }
+.level-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255, 193, 69, 0.12); color: var(--color-accent);
+  border: 1px solid rgba(255, 193, 69, 0.35);
+  padding: 6px 14px; border-radius: 999px;
+  font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700;
+  margin-bottom: 16px;
+}
+.page-intro h1 { font-size: 2.2rem; margin-bottom: 10px; }
+.lead { color: var(--color-text-muted); max-width: 620px; }
+
+/* ===== SECTIONS ===== */
+.section { padding: 56px 0; }
+.section-alt { background: var(--color-bg-alt); }
+.section-desc { color: var(--color-text-muted); margin-bottom: 28px; max-width: 640px; }
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 22px; border-radius: var(--radius);
+  font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer;
+  font-family: var(--font-body);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--color-primary); color: #0F1420; }
+.btn-primary:hover { background: var(--color-primary-dark); }
+.btn-glow { box-shadow: 0 0 0 4px rgba(79, 209, 197, 0.35); }
+
+/* =========================================================
+   1. CONTACT FORM — two-column layout: form + info card
+========================================================= */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;   /* form gets more space than the info card */
+  gap: 32px;
+  align-items: start;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 0.88rem; font-weight: 600; color: var(--color-text-muted); }
+.form-group input,
+.form-group textarea {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  resize: vertical;
+  width: 100%;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 209, 197, 0.15);
+}
+.form-group input.invalid,
+.form-group textarea.invalid { border-color: var(--color-danger); }
+.error-msg { color: var(--color-danger); font-size: 0.8rem; min-height: 16px; }
+.form-success { color: var(--color-primary); font-weight: 600; font-size: 0.9rem; }
+
+.contact-info-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.contact-info-card h3 { margin-bottom: 10px; font-size: 1.15rem; }
+.contact-info-card p { color: var(--color-text-muted); font-size: 0.92rem; margin-bottom: 20px; }
+.contact-info-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+.contact-info-list li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--color-text); }
+.contact-info-list i { color: var(--color-primary); width: 18px; text-align: center; }
+.contact-info-card .social-links { display: flex; gap: 16px; }
+.contact-info-card .social-links a { font-size: 1.3rem; color: var(--color-text-muted); }
+.contact-info-card .social-links a:hover { color: var(--color-primary); }
+
+/* =========================================================
+   2. PHOTO GRID GALLERY — CSS Grid
+========================================================= */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.photo-item {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+.photo-item img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;         /* keeps photos cropped neatly, no distortion */
+  display: block;
+  transition: transform 0.3s ease;
+}
+.photo-item:hover img { transform: scale(1.06); }
+.photo-item figcaption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.75));
+  color: #fff;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 18px 8px 8px;
+}
+
+/* =========================================================
+   3. TO-DO LIST
+========================================================= */
+.todo-box { max-width: 520px; }
+.todo-input-row { display: flex; gap: 10px; margin-bottom: 20px; }
+.todo-input-row input {
+  flex: 1;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+.todo-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.todo-item {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+}
+.todo-item span { flex: 1; }
+.todo-item.completed span { text-decoration: line-through; color: var(--color-text-muted); }
+.todo-item .remove-btn { background: none; border: none; color: var(--color-danger); cursor: pointer; font-size: 1rem; padding: 4px 8px; }
+
+/* ===== FOOTER ===== */
+.site-footer { background: #0A0E17; padding: 30px 0; border-top: 1px solid var(--color-border); text-align: center; }
+.footer-note { font-size: 0.78rem; color: var(--color-text-muted); }
+
+/* =========================================================
+   RESPONSIVE — media queries
+========================================================= */
+@media (max-width: 900px) {
+  .contact-layout { grid-template-columns: 1fr; }   /* stack form + info card */
+  .photo-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .header-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
+@media (max-width: 400px) {
+  .photo-grid { grid-template-columns: 1fr; }
+  .page-intro h1 { font-size: 1.7rem; }
+}
