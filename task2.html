@@ -16,7 +16,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <span class="logo"><i class="fa-solid fa-shield-halved"></i> GOKUL<span class="logo-dot">.</span></span>
-      <nav>
+      <nav aria-label="Main navigation">
         <a href="#form">Contact</a>
         <a href="#gallery">Gallery</a>
         <a href="#todo">Quest Log</a>
@@ -28,54 +28,43 @@
     <div class="container">
       <span class="level-chip"><i class="fa-solid fa-star"></i> LEVEL 2 &middot; INTERMEDIATE</span>
       <h1>Task 2: Intermediate HTML, CSS &amp; JavaScript</h1>
-      <p class="lead">A working contact form, a responsive photo grid, and a dynamic to-do list — built with Flexbox, CSS Grid, and JavaScript form validation.</p>
+      <p class="lead">A validated contact form, a responsive photo grid, and a dynamic to-do list — built with Flexbox, CSS Grid, and JavaScript.</p>
     </div>
   </section>
 
-  <!-- ===== 1. CONTACT FORM (sends a real email via FormSubmit) ===== -->
+  <!-- ===== 1. CONTACT FORM ===== -->
   <section id="form" class="section">
     <div class="container">
       <h2><i class="fa-solid fa-envelope-open-text"></i> Get in touch</h2>
-      <p class="section-desc">Fill this out and it'll actually land in my inbox — validated with JavaScript before it ever gets sent.</p>
+      <p class="section-desc">Share your details and a message. The form validates required fields and email format before submission.</p>
 
       <div class="contact-layout">
 
         <!-- LEFT: the form -->
-        <form
-          id="contactForm"
-          class="contact-form"
-          action="https://formsubmit.co/YOUR-EMAIL@example.com"
-          method="POST"
-          novalidate
-        >
-          <!-- FormSubmit configuration fields (hidden, not shown to the user) -->
-          <input type="hidden" name="_subject" value="New message from your portfolio site!" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_template" value="table" />
-
+        <form id="contactForm" class="contact-form" novalidate>
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your full name" />
-            <span class="error-msg" id="nameError"></span>
+            <input type="text" id="name" name="name" placeholder="Your full name" autocomplete="name" required aria-describedby="nameError" />
+            <span class="error-msg" id="nameError" aria-live="polite"></span>
           </div>
 
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" />
-            <span class="error-msg" id="emailError"></span>
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required aria-describedby="emailError" />
+            <span class="error-msg" id="emailError" aria-live="polite"></span>
           </div>
 
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Say something..."></textarea>
-            <span class="error-msg" id="messageError"></span>
+            <textarea id="message" name="message" rows="5" placeholder="Say something..." required aria-describedby="messageError"></textarea>
+            <span class="error-msg" id="messageError" aria-live="polite"></span>
           </div>
 
           <button type="submit" class="btn btn-primary btn-glow" id="submitBtn">
             <i class="fa-solid fa-paper-plane"></i> Send message
           </button>
 
-          <p id="formSuccess" class="form-success"></p>
+          <p id="formSuccess" class="form-success" aria-live="polite"></p>
         </form>
 
         <!-- RIGHT: contact info card -->
@@ -150,12 +139,13 @@
 
       <div class="todo-box">
         <div class="todo-input-row">
-          <input type="text" id="todoInput" placeholder="Add a new quest..." />
-          <button id="addTodoBtn" class="btn btn-primary">
+          <input type="text" id="todoInput" placeholder="Add a new quest..." aria-label="New quest" />
+          <button type="button" id="addTodoBtn" class="btn btn-primary">
             <i class="fa-solid fa-plus"></i> Add
           </button>
         </div>
         <ul id="todoList" class="todo-list"></ul>
+        <p id="todoStatus" class="todo-status" aria-live="polite"></p>
       </div>
     </div>
   </section>

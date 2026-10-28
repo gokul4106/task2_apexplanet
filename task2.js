@@ -1,13 +1,5 @@
 /* =========================================================
    PART 1 — CONTACT FORM VALIDATION
-   The form's action="https://formsubmit.co/..." attribute
-   is what actually sends the email — that happens with a
-   normal HTML form submission, no JavaScript required for
-   the sending part itself.
-
-   JavaScript's job here is ONLY to check the fields first
-   and block the submission if something's missing or wrong
-   — exactly what Task 2 asks for.
 ========================================================= */
 
 const form = document.getElementById("contactForm");
@@ -15,7 +7,6 @@ const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const messageInput = document.getElementById("message");
 const formSuccess = document.getElementById("formSuccess");
-const submitBtn = document.getElementById("submitBtn");
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -47,26 +38,24 @@ form.addEventListener("submit", function (e) {
   }
 
   if (!isValid) {
-    // Stop the form from submitting at all if validation fails
     e.preventDefault();
     formSuccess.textContent = "";
     return;
   }
 
-  // If we get here, validation passed — let the form submit
-  // normally to FormSubmit, which sends the actual email.
-  formSuccess.style.color = "var(--color-primary)";
-  formSuccess.textContent = "Sending...";
-  submitBtn.disabled = true;
+  e.preventDefault();
+  formSuccess.textContent = "Your details are valid. Connect a form service to receive messages.";
 });
 
 function showError(inputEl, errorId, message) {
   inputEl.classList.add("invalid");
+  inputEl.setAttribute("aria-invalid", "true");
   document.getElementById(errorId).textContent = message;
 }
 
 function clearError(inputEl, errorId) {
   inputEl.classList.remove("invalid");
+  inputEl.setAttribute("aria-invalid", "false");
   document.getElementById(errorId).textContent = "";
 }
 
@@ -78,6 +67,7 @@ function clearError(inputEl, errorId) {
 const todoInput = document.getElementById("todoInput");
 const addTodoBtn = document.getElementById("addTodoBtn");
 const todoList = document.getElementById("todoList");
+const todoStatus = document.getElementById("todoStatus");
 
 addTodoBtn.addEventListener("click", addTodo);
 todoInput.addEventListener("keydown", function (e) {
@@ -86,28 +76,46 @@ todoInput.addEventListener("keydown", function (e) {
 
 function addTodo() {
   const taskText = todoInput.value.trim();
-  if (taskText === "") return;
+  if (taskText === "") {
+    todoStatus.textContent = "Enter a quest before adding it.";
+    todoInput.focus();
+    return;
+  }
 
   const li = document.createElement("li");
   li.className = "todo-item";
 
+  const label = document.createElement("label");
+  label.className = "todo-label";
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.addEventListener("change", function () {
+    li.classList.toggle("completed", checkbox.checked);
+  });
+
   const span = document.createElement("span");
   span.textContent = taskText;
-  span.addEventListener("click", function () {
-    li.classList.toggle("completed");
-  });
+  label.append(checkbox, span);
 
   const removeBtn = document.createElement("button");
   removeBtn.className = "remove-btn";
-  removeBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+  removeBtn.type = "button";
+  removeBtn.setAttribute("aria-label", `Remove ${taskText}`);
+  const removeIcon = document.createElement("i");
+  removeIcon.className = "fa-solid fa-trash";
+  removeIcon.setAttribute("aria-hidden", "true");
+  removeBtn.appendChild(removeIcon);
   removeBtn.addEventListener("click", function () {
     li.remove();
+    todoStatus.textContent = `Removed quest: ${taskText}`;
   });
 
-  li.appendChild(span);
+  li.appendChild(label);
   li.appendChild(removeBtn);
   todoList.appendChild(li);
 
   todoInput.value = "";
+  todoStatus.textContent = `Added quest: ${taskText}`;
   todoInput.focus();
 }

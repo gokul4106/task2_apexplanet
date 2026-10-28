@@ -51,6 +51,10 @@ a { color: var(--color-primary); text-decoration: none; }
 .site-header nav { display: flex; align-items: center; gap: 26px; }
 .site-header nav a { color: var(--color-text-muted); font-weight: 500; font-size: 0.95rem; transition: color 0.2s ease; }
 .site-header nav a:hover { color: var(--color-primary); }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
 
 /* ===== PAGE INTRO ===== */
 .page-intro { padding: 56px 0 40px; }
@@ -197,9 +201,12 @@ a { color: var(--color-primary); text-decoration: none; }
   border-radius: var(--radius);
   padding: 12px 16px;
 }
-.todo-item span { flex: 1; }
+.todo-label { display: flex; align-items: center; gap: 10px; flex: 1; cursor: pointer; }
+.todo-label input { accent-color: var(--color-primary); }
+.todo-label span { overflow-wrap: anywhere; }
 .todo-item.completed span { text-decoration: line-through; color: var(--color-text-muted); }
 .todo-item .remove-btn { background: none; border: none; color: var(--color-danger); cursor: pointer; font-size: 1rem; padding: 4px 8px; }
+.todo-status { min-height: 1.5em; margin-top: 10px; color: var(--color-text-muted); font-size: 0.85rem; }
 
 /* ===== FOOTER ===== */
 .site-footer { background: #0A0E17; padding: 30px 0; border-top: 1px solid var(--color-border); text-align: center; }
